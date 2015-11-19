@@ -1,0 +1,32 @@
+extends layout
+
+block content
+	.col-md-2
+		h1= Leyndó
+		p You are #{user.username}
+
+		if users
+			p Users:
+			each u in users
+				.list-group-item #{u.username}
+
+
+	.col-md-6
+		form(method="post")
+			textarea(name="textarea" class="form-control" rows="10" placeholder="Write your post here")
+			br
+			button(type="submit" class="btn btn-primary") Post on Wall
+				
+
+	.col-md-4
+		if entries
+			p 
+			each u in entries
+
+				.container-fluid
+					.panel.panel-success
+							.panel-heading
+								p#user #{u.username} 
+								p#date writes on #{u.date}
+						.panel-body 
+							p#text #{u.text}

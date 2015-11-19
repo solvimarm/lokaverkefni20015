@@ -1,0 +1,18 @@
+extends layout
+
+mixin radio(label, value, selected)
+  label
+    = label
+    input(type='radio', value=value, name='radio', checked = selected === value)
+
+block content
+  p= selected
+  form(method='post', action='/radio')
+    div
+      label(for='name') Name
+      input(type='text',name='name', id='name')
+
+    +radio('A', 'a', selected)
+    +radio('B', 'b', selected)
+    +radio('C', 'c', selected)
+    button Senda

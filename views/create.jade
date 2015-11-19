@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= Login
+  .container-fluid
+  form.form-signin(method='post', action='/create')
+    if post
+      if !success
+        .alert.alert-danger
+          p Username already taken or you have done something wrong!
+      else
+        .alert.alert-success
+          p You have successfully created an account
+      
+
+    .form-group
+      h2.form-signin-heading Create an account
+      .form-group.inputwindow
+        input.form-control(type='text', id='username', name='username', value=username)
+      .form-group.inputwindow
+        input.form-control(type='password', id='password', name='password')
+      button.btn.btn-large.btn-primary(type="submit") Create user
+

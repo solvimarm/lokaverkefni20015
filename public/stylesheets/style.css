@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#user{
+	font-size: 20px;
+}
+
+#date {
+	font-size:15px;
+}
+
+#text{
+	font-size: 15px;
+}
+
+.inputwindow{
+	max-width: 300px;
+}

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+	h1= Login
+	.container-fluid
+		
+		form.form-signin(method='post', action='/login')
+			if error
+				.alert.alert-danger
+					p User does not exist or you have done something horribly wrong!
+
+			.form-group
+				h2.form-signin-heading Please sign in
+			.form-group.inputwindow
+				input.form-control(type="text", name="username", placeholder="Username")
+			.form-group.inputwindow
+				input.form-control(type="password", name="password", placeholder="Password")
+			button.btn.btn-large.btn-primary(type="submit") Sign in
+

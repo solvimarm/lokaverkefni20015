@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		title= title
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous")
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		nav(class="navbar navbar-default")
+			div(class="container-fluid")
+				div(class="navbar-header")
+					a(class="navbar-brand" href='/') Home
+				div
+					ul(class="nav navbar-nav")
+						li: a(href='/create') Create
+						li: a(href='/login') Login
+						if (user)
+							li: a(href='/logout') Log Out
+	block content
+
+
+
+
