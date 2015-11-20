@@ -13,6 +13,8 @@ router.post('/login', loginHandler);
 router.get('/logout', logout);
 router.get('/create', createForm);
 router.post('/create', createHandler);
+router.get('/newpost', newPost);
+router.post('/newpost',tagOnTheWallHandler);
 
 module.exports = router;
 
@@ -134,5 +136,10 @@ function tagOnTheWallHandler(req, res, next){
       success = false;
     }
     index(req, res, next);
+    res.redirect('/restricted');
   });
+}
+
+function newPost(req, res, next) {
+  res.render('newpost', { title: 'newpost' });
 }
