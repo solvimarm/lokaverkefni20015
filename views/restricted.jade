@@ -12,18 +12,19 @@ block content
 
 
 	.col-md-6
-
-				
-
-	.col-md-4
 		if entries
 			p 
 			each u in entries
 
-				.container-fluid
-					.panel.panel-success
-							.panel-heading
-								p#user #{u.username} 
-								p#date writes on #{u.date}
-						.panel-body 
+				a.container-fluid(href='/')
+					.panel.panel-primary
+						.panel-heading
 							p#text #{u.text}
+						.panel-footer
+							p#user #{u.username} 							
+							p#date #{u.date}
+
+				
+
+	.col-md-4
+
