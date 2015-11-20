@@ -125,7 +125,8 @@ function index(req, res, next) {
 function tagOnTheWallHandler(req, res, next){
   var text = req.body.textarea;
   var user = req.session.user;
-  post.createPost (user.username, text, function (err, status) {
+  var headline = req.body.headline;
+  post.createPost (user.username, text, headline, function (err, status) {
     if (err) {
       console.error(err);
     }
