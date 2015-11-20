@@ -3,6 +3,8 @@ extends layout
 block content
 
 	form(method="post")
+		input.form-control(type="text",name="headline",placeholder="Title of your post")
+		br
 		textarea(name="textarea" class="form-control" rows="10" placeholder="Write your post here")
 		br
 		button(type="submit" class="btn btn-primary") Post on Wall

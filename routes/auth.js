@@ -13,7 +13,7 @@ router.post('/login', loginHandler);
 router.get('/logout', logout);
 router.get('/create', createForm);
 router.post('/create', createHandler);
-router.get('/newpost', newPost);
+router.get('/newpost', ensureLoggedinIn, newPost);
 router.post('/newpost',tagOnTheWallHandler);
 
 module.exports = router;
@@ -141,5 +141,9 @@ function tagOnTheWallHandler(req, res, next){
 }
 
 function newPost(req, res, next) {
-  res.render('newpost', { title: 'newpost' });
+  var user = req.session.user;
+  res.render('newpost', { title: 'newpost',
+    user:user
+   });
+
 }
