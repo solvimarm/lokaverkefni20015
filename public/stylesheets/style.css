@@ -3,20 +3,22 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a:link {
+	  text-decoration: none;
 }
 
 #user{
-	font-size: 20px;
+	font-size: 15px;
+
 }
 
 #date {
 	font-size:15px;
+	
 }
 
 #text{
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .inputwindow{
