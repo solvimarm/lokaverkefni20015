@@ -16,7 +16,7 @@ block content
 			p 
 			each u in entries
 
-				a.container-fluid(href='/')
+				a.container-fluid(href='/addcomment/'+ u.post_id)
 					.panel.panel-primary
 						.panel-heading
 							p#text #{u.headline}
