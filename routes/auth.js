@@ -146,5 +146,4 @@ function newPost(req, res, next) {
   res.render('newpost', { title: 'newpost',
     user:user
    });
-
 }
