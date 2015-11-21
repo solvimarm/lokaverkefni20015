@@ -15,6 +15,8 @@ router.get('/create', createForm);
 router.post('/create', createHandler);
 router.get('/newpost', ensureLoggedinIn, newPost);
 router.post('/newpost',tagOnTheWallHandler);
+router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
+router.post('/addcomment/:post_id', AddCommentHandler);
 
 module.exports = router;
 
@@ -146,5 +148,28 @@ function newPost(req, res, next) {
   res.render('newpost', { title: 'newpost',
     user:user
    });
+}
+function AddCommentHandler(req, res, next){
+  var comment = req.body.comment;
+  var user = req.session.user;
+  var col_id = req.params.post_id;
+  post.addComment (user.username, comment, col_id, function (err, status) {
+    if (err) {
+      console.error(err);
+    }
 
+    var success = true;
+
+    if (err || !status) {
+      success = false;
+    }
+    res.redirect('/addcomment/:post_id');
+  });
+}
+
+function newComment(req, res, next) {
+  var user = req.session.user;
+  res.render('addcomment', { title: 'newcomment',
+    user:user
+   });
 }
