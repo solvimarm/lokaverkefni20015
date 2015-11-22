@@ -133,6 +133,7 @@ function newPost(req, res, next) {
   res.render('newpost', { title: 'newpost',
     user:user
    });
+
 }
 function AddCommentHandler(req, res, next){
   var comment = req.body.comment;
@@ -150,6 +151,7 @@ function AddCommentHandler(req, res, next){
     }
     res.redirect('/addcomment/'+ col_id);
   });
+>>>>>>> a3ada5b7c2f6d5c8927f2cf03e698472cd582019
 }
 
 function newComment(req, res, next) {
