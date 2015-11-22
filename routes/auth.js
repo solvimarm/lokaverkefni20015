@@ -107,22 +107,7 @@ function index(req, res, next) {
     });
   });
 }
-/*
-function index(req, res, next) {
-  var user = req.session.user;
-  post.listPosts(function(err, entrylists){
-  users.listUsers(function (err, all) {
-    console.log(all)
-    res.render('restricted', { title: 'Restricted zone',
-      user: user,
-      users: all,
-      entries: entrylists
-      console.log(entrylists);
-       });
-  });
-  });
-}
-*/
+
 
 function tagOnTheWallHandler(req, res, next){
   var text = req.body.textarea;
@@ -163,13 +148,20 @@ function AddCommentHandler(req, res, next){
     if (err || !status) {
       success = false;
     }
-    res.redirect('/addcomment/:post_id');
+    res.redirect('/addcomment/'+ col_id);
   });
 }
 
 function newComment(req, res, next) {
   var user = req.session.user;
-  res.render('addcomment', { title: 'newcomment',
-    user:user
-   });
+  post.listPosts(function (err, entryList) {
+    post.listComments(function (err, all) {
+      res.render('addcomment', { title: 'new comments',
+        user: user,
+        comm: all,
+        entries: entryList
+      });
+    });
+  });
+
 }

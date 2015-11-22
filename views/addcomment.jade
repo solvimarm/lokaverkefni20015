@@ -1,10 +1,22 @@
 extends layout
 
 block content
+	.col-md-2
+	.col-md-6
+		if entries
+			p
+			each u in entries
+				h1 #{u.headline}
+				p #{u.text}
 
+		form(method="post")
+			textarea(name="comment" class="form-control" rows="8" placeholder="Write your comment here")
+			br
+			button(type="submit" class="btn btn-primary") Comment
 
-
-	form(method="post")
-		textarea(name="comment" class="form-control" rows="8" placeholder="Write your comment here")
-		br
-		button(type="submit" class="btn btn-primary") Comment
+		if comm
+			p
+			each u in comm
+				p #{u.comment}
+				p #{u.username}
+				p #{u.date}
