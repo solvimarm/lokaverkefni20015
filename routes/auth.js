@@ -151,13 +151,13 @@ function AddCommentHandler(req, res, next){
     }
     res.redirect('/addcomment/'+ col_id);
   });
->>>>>>> a3ada5b7c2f6d5c8927f2cf03e698472cd582019
 }
 
 function newComment(req, res, next) {
   var user = req.session.user;
-  post.listPosts(function (err, entryList) {
-    post.listComments(function (err, all) {
+  var id = req.params.post_id;
+  post.postC(id, function (err, entryList) {
+    post.listComments(id, function (err, all) {
       res.render('addcomment', { title: 'new comments',
         user: user,
         comm: all,
