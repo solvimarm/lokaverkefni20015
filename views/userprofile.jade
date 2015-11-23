@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	if entries
+		p
+		each u in entries
+			p #{u.username}
+	if posted
+		p
+		each u in posted
+			a.container-fluid(href='/addcomment/'+ u.post_id)
+				.panel.panel-primary
+					.panel-heading
+						p#text #{u.headline}
+					.panel-body
+						p#date #{u.date}

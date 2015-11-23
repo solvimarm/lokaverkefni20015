@@ -17,8 +17,9 @@ router.get('/newpost', ensureLoggedinIn, newPost);
 router.post('/newpost',tagOnTheWallHandler);
 router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
 router.post('/addcomment/:post_id', AddCommentHandler);
-router.get('/profile', ensureLoggedinIn, myProfile);
+router.get('/userprofile/:username', ensureLoggedinIn, userProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
+router.get('/myprofile', ensureLoggedinIn, myProfile);
 
 
 
@@ -173,12 +174,27 @@ function newComment(req, res, next) {
 
 }
 
+function userProfile(req, res, next) {
+  var user = req.session.user;
+  var usname = req.params.username;
+  post.finduserpost(usname, function (err, all){
+    users.findprofile(usname, function (err, entryList) {
+      console.log(entryList);
+      console.log(all);
+      res.render('userprofile', { title: 'not your profile',
+        user: user,
+        posted: all,
+        entries: entryList
+      });
+    });
+  });
+}
+
 function myProfile(req, res, next) {
   var user = req.session.user;
-  res.render('profile', { title: 'this is you',
-    user:user
-   });
-
+  res.render('myprofile', { title: 'List of members',
+    user: user
+  });
 }
 
 function allMembers(req, res, next) {
