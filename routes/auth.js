@@ -21,6 +21,7 @@ router.get('/profile', ensureLoggedinIn, myProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
 
 
+
 module.exports = router;
 
 /** route middlewares **/
