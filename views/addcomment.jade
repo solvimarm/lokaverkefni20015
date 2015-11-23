@@ -11,10 +11,13 @@ block content
 						.panel-title
 							p #{u.headline}
 					.panel-body
-						p #{u.text}		
+						p #{u.text} 
+						a(href=u.url) #{u.url}
 					.panel-footer
 						p #{u.username} #{u.date}
-		h2 Comments			
+
+
+		h2 Comments		
 
 		if comm
 			p
