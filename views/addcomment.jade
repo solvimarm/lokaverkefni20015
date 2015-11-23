@@ -6,17 +6,27 @@ block content
 		if entries
 			p
 			each u in entries
-				h1 #{u.headline}
-				p #{u.text}
-
-		form(method="post")
-			textarea(name="comment" class="form-control" rows="8" placeholder="Write your comment here")
-			br
-			button(type="submit" class="btn btn-primary") Comment
+				.panel.panel-primary
+					.panel-heading
+						.panel-title
+							p #{u.headline}
+					.panel-body
+						p #{u.text}		
+		h2 Comments			
 
 		if comm
 			p
 			each u in comm
-				p #{u.comment}
-				p #{u.username}
-				p #{u.date}
+				.panel.panel-default
+					.panel-heading
+						.panel-title
+							p #{u.username}
+							p #{u.date}					
+					.panel-body		
+							p #{u.comment}
+
+
+		form(method="post")
+			textarea(name="comment" class="form-control" rows="5" placeholder="Write your comment here")
+			br
+			button(type="submit" class="btn btn-primary") Comment
