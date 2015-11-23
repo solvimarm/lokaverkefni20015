@@ -17,6 +17,8 @@ router.get('/newpost', ensureLoggedinIn, newPost);
 router.post('/newpost',tagOnTheWallHandler);
 router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
 router.post('/addcomment/:post_id', AddCommentHandler);
+router.get('/profile', ensureLoggedinIn, myProfile);
+router.get('/members', ensureLoggedinIn, allMembers);
 
 module.exports = router;
 
@@ -133,8 +135,8 @@ function newPost(req, res, next) {
   res.render('newpost', { title: 'newpost',
     user:user
    });
-
 }
+
 function AddCommentHandler(req, res, next){
   var comment = req.body.comment;
   var user = req.session.user;
@@ -166,4 +168,23 @@ function newComment(req, res, next) {
     });
   });
 
+}
+
+function myProfile(req, res, next) {
+  var user = req.session.user;
+  res.render('profile', { title: 'this is you',
+    user:user
+   });
+
+}
+
+function allMembers(req, res, next) {
+  var user = req.session.user;
+
+  users.listUsers(function (err, all) {
+    res.render('members', { title: 'List of members',
+      user: user,
+      users: all
+    });
+  });
 }

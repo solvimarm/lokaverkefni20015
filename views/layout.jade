@@ -12,11 +12,15 @@ html
 					a(class="navbar-brand" href='/') Home
 				div
 					ul(class="nav navbar-nav")
-						li: a(href='/create') Create
-						li: a(href='/login') Login
+						if (!user)
+							li: a(href='/create') Register
+							li: a(href='/login') Login
 						if (user)
-							li: a(href='/logout') Log Out
+							li: a(href='/profile') Profile
+							li: a(href='/restricted') Posts
+							li: a(href='/members') Members 
 							li: a(href='/newpost') Add post
+							li: a(href='/logout') Log Out
 	block content
 
 

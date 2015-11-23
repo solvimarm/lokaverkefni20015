@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	.col-md-2
+		h1= Leyndó
+		p You are #{user.username}
+
+		if users
+			p Users:
+			each u in users
+				.list-group-item #{u.username}
