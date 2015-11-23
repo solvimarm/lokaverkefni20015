@@ -2,16 +2,8 @@ extends layout
 
 block content
 	.col-md-2
-		h1= Leyndó
-		p You are #{user.username}
 
-		if users
-			p Users:
-			each u in users
-				.list-group-item #{u.username}
-
-
-	.col-md-6
+	.col-md-8
 		if entries
 			p 
 			each u in entries
@@ -26,5 +18,5 @@ block content
 
 				
 
-	.col-md-4
+	.col-md-2
 
