@@ -3,10 +3,10 @@ extends layout
 block content
 	.col-md-2
 	.col-md-8
-		h1= Leyndó
-		p You are #{user.username}
+		h2 Users on this site
+		h3 You are: #{user.username}
 
 		if users
-			p Users:
-			each u in users
-				.list-group-item #{u.username}
+			p Click a name to visit their profile
+			each u in users 
+				a.list-group-item(href="/profile/"+u.username) #{u.username} 
