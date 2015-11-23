@@ -2,7 +2,7 @@ extends layout
 
 block content
 	.col-md-2
-	.col-md-6
+	.col-md-8
 		if entries
 			p
 			each u in entries
@@ -11,8 +11,10 @@ block content
 						.panel-title
 							p #{u.headline}
 					.panel-body
-						p #{u.text} 
-						a(href=u.url) #{u.url}
+						p #{u.text}
+						if u.url
+							a.btn.btn-default(role="button",href=u.url)
+								span.glyphicon.glyphicon-link(aria-hidden ="true")
 					.panel-footer
 						p #{u.username} #{u.date}
 

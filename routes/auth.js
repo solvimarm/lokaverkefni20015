@@ -20,6 +20,7 @@ router.post('/addcomment/:post_id', AddCommentHandler);
 router.get('/profile', ensureLoggedinIn, myProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
 
+
 module.exports = router;
 
 /** route middlewares **/
@@ -189,3 +190,4 @@ function allMembers(req, res, next) {
     });
   });
 }
+
