@@ -12,7 +12,7 @@ router.get('/login', redirectIfLoggedIn, login);
 router.post('/login', loginHandler);
 router.get('/logout', logout);
 router.get('/create', createForm);
-router.post('/create', createHandler);
+router.post('/create', addprofile, createHandler);
 router.get('/newpost', ensureLoggedinIn, newPost);
 router.post('/newpost',tagOnTheWallHandler);
 router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
@@ -31,6 +31,24 @@ function createForm(req, res, next) {
   res.render('create', { title: 'Create user' });
 }
 
+function addprofile(req, res, next){
+  var username = req.body.username;
+  console.log(username);
+  users.insertprofile(username, function (err, status) {
+    if (err) {
+      console.error(err);
+    }
+
+
+    var success = true;
+
+    if (err || !status) {
+      success = false;
+    }
+  });
+  next();
+}
+
 function createHandler(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
@@ -40,6 +58,7 @@ function createHandler(req, res, next) {
     if (err) {
       console.error(err);
     }
+
 
     var success = true;
 
