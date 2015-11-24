@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-
+var validate = require('../lib/validate');
 var users = require('../lib/users');
 var post = require('../lib/anotherbrickinthewall');
 
@@ -19,6 +19,7 @@ router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
 router.post('/addcomment/:post_id', AddCommentHandler);
 router.get('/userprofile/:username', ensureLoggedinIn, userProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
+router.post('/members',searchMember);
 router.get('/myprofile', ensureLoggedinIn, myProfile);
 router.get('/edit', ensureLoggedinIn, editProfile);
 router.post('/edit', postEdit);
@@ -56,20 +57,24 @@ function createHandler(req, res, next) {
   var password = req.body.password;
 
   // hér vantar *alla* villumeðhöndlun
-  users.createUser(username, password, function (err, status) {
-    if (err) {
-      console.error(err);
-    }
+  if(validate.isName(username) && validate.isName(password)){
+    users.createUser(username, password, function (err, status) {
+      if (err) {
+        console.error(err);
+      }
 
+      var success = true;
 
-    var success = true;
+      if (err || !status) {
+        success = false;
+      }
 
-    if (err || !status) {
-      success = false;
-    }
-
-    res.render('create', { title: 'Create user', post: true, success: success })
-  });
+      res.render('create', { title: 'Create user', post: true, success: success });
+    });
+  }
+  else{
+    res.render('create', { title: 'Create user', fault: true });
+  }
 }
 
 function ensureLoggedinIn(req, res, next) {
@@ -124,12 +129,9 @@ function index(req, res, next) {
   var user = req.session.user;
 
   post.listPosts(function (err, entryList) {
-    users.listUsers(function (err, all) {
-      res.render('restricted', { title: 'Restricted zone',
-        user: user,
-        users: all,
-        entries: entryList
-      });
+    res.render('restricted', { title: 'Restricted zone',
+      user: user,
+      entries: entryList
     });
   });
 }
@@ -140,19 +142,25 @@ function tagOnTheWallHandler(req, res, next){
   var user = req.session.user;
   var newurl = req.body.url;
   var headline = req.body.headline;
-  post.createPost (user.username, text, headline, newurl, function (err, status) {
-    if (err) {
-      console.error(err);
-    }
+  var vid = req.body.video;
+  if(validate.isEmpty(headline)){
+    post.createPost (user.username, text, headline, newurl, vid,function (err, status) {
+      if (err) {
+        console.error(err);
+      }
 
-    var success = true;
+      var success = true;
 
-    if (err || !status) {
-      success = false;
-    }
-    index(req, res, next);
-    res.redirect('/restricted');
-  });
+      if (err || !status) {
+        success = false;
+      }
+      index(req, res, next);
+      res.redirect('/restricted');
+    });
+  }
+  else{
+    res.render('newpost', { title: 'new post', fault: true });
+  }
 }
 
 function newPost(req, res, next) {
@@ -185,6 +193,7 @@ function newComment(req, res, next) {
   var id = req.params.post_id;
   post.postC(id, function (err, entryList) {
     post.listComments(id, function (err, all) {
+      console.log(entryList);
       res.render('addcomment', { title: 'new comments',
         user: user,
         comm: all,
@@ -229,11 +238,19 @@ function myProfile(req, res, next) {
 
 function allMembers(req, res, next) {
   var user = req.session.user;
+  res.render('members', { title: 'List of members',
+      user: user
+    });
+}
 
-  users.listUsers(function (err, all) {
-    res.render('members', { title: 'List of members',
+function searchMember(req, res, next) {
+  var user = req.session.user;
+  var usname = req.body.search;
+  console.log(user);
+  users.listUsers(usname, function (err, entryList) {
+    res.render('members', { title: 'members',
       user: user,
-      users: all
+      users: entryList
     });
   });
 }
@@ -257,8 +274,9 @@ function postEdit (req, res, next){
   var phone = req.body.phonenumber;
   var email = req.body.email;
   var rank = req.body.selectrank;
+  var land = req.body.contry;
   console.log(rank);
-  users.updateprofile(user.username, about, image, phone, email, rank,function (err, status) {
+  users.updateprofile(user.username, about, image, phone, email, rank, land,function (err, status) {
     if (err) {
       console.error(err);
     }

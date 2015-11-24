@@ -11,6 +11,10 @@ block content
       else
         .alert.alert-success
           p You have successfully created an account
+    if fault
+      .alert.alert-danger
+        p Username and password mustbe atleast 3 characters long
+
       
 
     .form-group
