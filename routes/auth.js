@@ -57,20 +57,24 @@ function createHandler(req, res, next) {
   var password = req.body.password;
 
   // hér vantar *alla* villumeðhöndlun
-  users.createUser(username, password, function (err, status) {
-    if (err) {
-      console.error(err);
-    }
+  if(validate.isName(username) && validate.isName(password)){
+    users.createUser(username, password, function (err, status) {
+      if (err) {
+        console.error(err);
+      }
 
+      var success = true;
 
-    var success = true;
+      if (err || !status) {
+        success = false;
+      }
 
-    if (err || !status) {
-      success = false;
-    }
-
-    res.render('create', { title: 'Create user', post: true, success: success })
-  });
+      res.render('create', { title: 'Create user', post: true, success: success });
+    });
+  }
+  else{
+    res.render('create', { title: 'Create user', fault: true });
+  }
 }
 
 function ensureLoggedinIn(req, res, next) {
@@ -139,19 +143,24 @@ function tagOnTheWallHandler(req, res, next){
   var newurl = req.body.url;
   var headline = req.body.headline;
   var vid = req.body.video;
-  post.createPost (user.username, text, headline, newurl, vid,function (err, status) {
-    if (err) {
-      console.error(err);
-    }
+  if(validate.isEmpty(headline)){
+    post.createPost (user.username, text, headline, newurl, vid,function (err, status) {
+      if (err) {
+        console.error(err);
+      }
 
-    var success = true;
+      var success = true;
 
-    if (err || !status) {
-      success = false;
-    }
-    index(req, res, next);
-    res.redirect('/restricted');
-  });
+      if (err || !status) {
+        success = false;
+      }
+      index(req, res, next);
+      res.redirect('/restricted');
+    });
+  }
+  else{
+    res.render('newpost', { title: 'new post', fault: true });
+  }
 }
 
 function newPost(req, res, next) {

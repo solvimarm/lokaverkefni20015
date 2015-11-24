@@ -6,6 +6,9 @@ block content
 
 
 		.col-md-8
+			if fault
+				.alert.alert-danger
+					p You must fill inn title of post
 			form(method="post")
 				input.form-control(type="text",name="headline",placeholder="Title of your post")
 				br
