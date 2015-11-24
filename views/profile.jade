@@ -1,7 +1,11 @@
 extends layout
 
 block content
-	if entries
-		p
-		each u in entries
-			p #{u.username}
+	.col-md-2
+	.col-md-8
+		if entries
+			p
+			each u in entries
+				p #{u.username}
+
+	.col-md-2

@@ -24,3 +24,22 @@ a:link {
 .inputwindow{
 	max-width: 300px;
 }
+
+#banner{
+	position: relative;
+	background-image: url("/banner2.jpg");
+	width: 100%;
+    height: 350px;
+    background-size: cover;
+    overflow: hidden;
+
+}
+
+.user-wrapper .description {
+    padding: 25px;
+    background-color: #fff;
+}
+.user-wrapper img {
+    height: 300px;
+    width: 300px;
+}
