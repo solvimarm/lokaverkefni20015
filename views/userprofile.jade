@@ -4,17 +4,18 @@ block content
 
 	.col-md-2
 	.col-md-8
-		
-		.user-wrapper
-			img.img-responsive(src="/banner.jpg")
-		.description
-			h4 solvimarma
-			p sdfjsdfsdfsdf
-		.description
-			h3 sovlsovlsosl
-			p dsfsdfsdkfksdjfkjsdfkjsdkjfksdjfksdjfksjdfkjsdfkjsdkjfsdkjfskjfksjfjks
+	if entries
+		p
+		each u in entries
+			.user-wrapper
+				img.img-responsive(src="/banner.jpg")
+			.description
+				h4 #{u.username}
+				p #{u.email}
+			.description
+				h3 #{u.phonenumber}
+				p #{u.about}
 
-		
 		br
 		if entries
 			p

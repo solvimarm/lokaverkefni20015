@@ -20,6 +20,8 @@ router.post('/addcomment/:post_id', AddCommentHandler);
 router.get('/userprofile/:username', ensureLoggedinIn, userProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
 router.get('/myprofile', ensureLoggedinIn, myProfile);
+router.get('/edit', ensureLoggedinIn, editProfile);
+router.post('/edit', postEdit);
 
 
 
@@ -211,8 +213,17 @@ function userProfile(req, res, next) {
 
 function myProfile(req, res, next) {
   var user = req.session.user;
-  res.render('myprofile', { title: 'List of members',
-    user: user
+  var usname = req.session.user.username;
+  post.finduserpost(usname, function (err, all){
+    users.findprofile(usname, function (err, entryList) {
+      console.log(entryList);
+      console.log(all);
+      res.render('myprofile', { title: 'myprofile',
+        user: user,
+        posted: all,
+        entries: entryList
+      });
+    });
   });
 }
 
@@ -226,4 +237,33 @@ function allMembers(req, res, next) {
     });
   });
 }
+
+function editProfile (req, res, next){
+  var user = req.session.user;
+  console.log(user);
+    res.render('edit', { title: 'edit your profile',
+    user: user
+  });
+}
+
+function postEdit (req, res, next){
+  var about = req.body.about;
+  var user = req.session.user;
+  var image = req.body.image_url;
+  var phone = req.body.phonenumber;
+  var email = req.body.email;
+  users.updateprofile(user.username, about, image, phone, email, function (err, status) {
+    if (err) {
+      console.error(err);
+    }
+
+    var success = true;
+
+    if (err || !status) {
+      success = false;
+    }
+    res.redirect('/myprofile');
+  });
+}
+
 

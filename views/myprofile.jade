@@ -1,3 +1,31 @@
 extends layout
 
 block content
+
+	.col-md-2
+	.col-md-8
+		if entries
+			p
+			each u in entries
+				.user-wrapper
+					if (!u.image)
+						img.img-responsive(src="/banner.jpg")
+					if (u.image)
+						ig.img-responsive(src=u.image)
+				.description
+					p #{u.username}
+					p #{u.email}
+					p #{u.phonenumber}
+				br
+				a.btn.btn-primary(href='/edit') edit
+				h2 Posts by #{u.username}
+		if posted
+			p
+			each u in posted
+				a.container-fluid(href='/addcomment/'+ u.post_id)
+					.panel.panel-primary
+						.panel-heading
+							p#text #{u.headline}
+						.panel-body
+							p#date #{u.date}
+	.col.md-2
