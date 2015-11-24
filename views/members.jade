@@ -6,7 +6,14 @@ block content
 		h2 Users on this site
 		h3 You are: #{user.username}
 
+		form(method="post")
+			input.form-control(type="text",name="search",placeholder="Search for a user")
+			br
+			button.btn.btn-primary(type="submit") Search
+			
+
 		if users
+			br
 			p Click a name to visit their profile
 			each u in users 
 				a.list-group-item(href="/userprofile/"+u.username) #{u.username} 
