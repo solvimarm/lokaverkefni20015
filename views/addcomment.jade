@@ -15,10 +15,11 @@ block content
 						if u.url
 							a.btn.btn-default(role="button",href=u.url)
 								span.glyphicon.glyphicon-link(aria-hidden ="true")
+						if u.embed			
+							iframe(type='text/html' width='640' height='390' frameborder='0' src=u.embed )
 					.panel-footer
 						p #{u.username} #{u.date}
-
-
+						iframe(src="//instalike.click/button/?thing=THING&align=left" frameborder="0" scrolling="0" width="140px" height="20px" colour='white')
 		h2 Comments		
 
 		if comm
@@ -29,11 +30,10 @@ block content
 						.panel-title
 							p #{u.username}
 							p #{u.date}					
-					.panel-body		
+						.panel-body		
 							p #{u.comment}
-
-
 		form(method="post")
 			textarea(name="comment" class="form-control" rows="5" placeholder="Write your comment here")
 			br
 			button(type="submit" class="btn btn-primary") Comment
+	.col-md-2

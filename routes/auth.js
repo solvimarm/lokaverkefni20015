@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-
+var validate = require('../lib/validate');
 var users = require('../lib/users');
 var post = require('../lib/anotherbrickinthewall');
 
@@ -138,7 +138,8 @@ function tagOnTheWallHandler(req, res, next){
   var user = req.session.user;
   var newurl = req.body.url;
   var headline = req.body.headline;
-  post.createPost (user.username, text, headline, newurl, function (err, status) {
+  var vid = req.body.video;
+  post.createPost (user.username, text, headline, newurl, vid,function (err, status) {
     if (err) {
       console.error(err);
     }
@@ -183,6 +184,7 @@ function newComment(req, res, next) {
   var id = req.params.post_id;
   post.postC(id, function (err, entryList) {
     post.listComments(id, function (err, all) {
+      console.log(entryList);
       res.render('addcomment', { title: 'new comments',
         user: user,
         comm: all,
@@ -263,8 +265,9 @@ function postEdit (req, res, next){
   var phone = req.body.phonenumber;
   var email = req.body.email;
   var rank = req.body.selectrank;
+  var land = req.body.contry;
   console.log(rank);
-  users.updateprofile(user.username, about, image, phone, email, rank,function (err, status) {
+  users.updateprofile(user.username, about, image, phone, email, rank, land,function (err, status) {
     if (err) {
       console.error(err);
     }
