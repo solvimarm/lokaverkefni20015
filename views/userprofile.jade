@@ -1,38 +1,7 @@
 extends layout
 
 block content
-
-<<<<<<< HEAD
-	.col-md-2
-	.col-md-8
-	if entries
-		p
-		each u in entries
-			.user-wrapper
-				img.img-responsive(src="/banner.jpg")
-			.description
-				h4 #{u.username}
-				p #{u.email}
-			.description
-				h3 #{u.phonenumber}
-				p #{u.about}
-
-		br
-		if entries
-			p
-			each u in entries
-				h2 Posts by #{u.username}
-		if posted
-			p
-			each u in posted
-				a.container-fluid(href='/addcomment/'+ u.post_id)
-					.panel.panel-primary
-						.panel-heading
-							p#text #{u.headline}
-						.panel-body
-							p#date #{u.date}
 	.col.md-2
-=======
 	.row
 
 
@@ -42,19 +11,24 @@ block content
 			.row
 				.col-md-3
 					.user-wrapper
-						img.img-responsive(src="/banner.jpg")
-				.col-md-3
-					.description
 						if entries
 							p
 							each u in entries
+								img.img-responsive(src="/banner.jpg")
+				.col-md-3
+					if entries
+						p
+						each u in entries
+							.description
 								h3 About #{u.username}
-								p Name: solvi
-								p Email: email
-								p Phonenumber: pnumber
+								p Email: #{u.email}
+								p Phonenumber: #{u.phonenumber}
 				.col-md-6
-					h3 Biography:
-					p aboutsdlkjadflkjsdfsdlfjsdlfkjsdlkfjsldkfjlksdjflksdjflksdjflksdjfklsjdflksjdflksjdflksdjflksdjflksdfjlskdfjlsdkfjlskfjskdfjlsdfjlskdfjlskdfjlskdfjsldkfjsldfkjslfkjslfkjsflksjdflskdjflsdkfjsldkfjsldfkjslfkjslkfjslkfjslkfjlskfjlskjflskdjflskdfjlskdfjlskdjflskdjflskdjflsdkfjsldkfjsldkfjslkdfjsldkfjsldkfjlskdfjlskdfjlksdjflksdjflksdjflskfdjlskdfjlskdfjsldkfjsldkfjsldkfjsldkfjsldkfjsdlfkjsdlfkjsdlfkjsdlfkjsdflkjsdflkjsdflksjdflksjdflksj
+					if entries
+						p
+						each u in entries
+							h3 Biography:
+							p #{u.about}
 						
 			br
 			if entries
@@ -71,4 +45,3 @@ block content
 							.panel-body
 								p#date #{u.date}
 		.col-md-2
->>>>>>> a6a6a3c00e40b5cbf0e186705de7f10620782bcc

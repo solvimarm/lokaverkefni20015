@@ -1,31 +1,51 @@
 extends layout
 
 block content
-
-	.col-md-2
-	.col-md-8
-		if entries
-			p
-			each u in entries
-				.user-wrapper
-					if (!u.image)
-						img.img-responsive(src="/banner.jpg")
-					if (u.image)
-						ig.img-responsive(src=u.image)
-				.description
-					p #{u.username}
-					p #{u.email}
-					p #{u.phonenumber}
-				br
-				a.btn.btn-primary(href='/edit') edit
-				h2 Posts by #{u.username}
-		if posted
-			p
-			each u in posted
-				a.container-fluid(href='/addcomment/'+ u.post_id)
-					.panel.panel-primary
-						.panel-heading
-							p#text #{u.headline}
-						.panel-body
-							p#date #{u.date}
 	.col.md-2
+	.row
+
+
+	.row
+		.col-md-2
+		.col-md-8
+			.row
+				.col-md-3
+					.user-wrapper
+						if entries
+							p
+							each u in entries
+								if (!u.image)
+									img.img-responsive(src="/banner.jpg")
+								if (u.image)
+									img.img-responsive(src=u.image)
+								br
+								a.btn.btn-primary(href='/edit') edit
+				.col-md-3
+					if entries
+						p
+						each u in entries
+							.description
+								h3 About #{u.username}
+								p Email: #{u.email}
+								p Phonenumber: #{u.phonenumber}
+				.col-md-6
+					if entries
+						p
+						each u in entries
+							h3 Biography:
+							p #{u.about}			
+			br
+			if entries
+				p
+				each u in entries
+					h2 Posts by #{u.username}
+			if posted
+				p
+				each u in posted
+					a.container-fluid(href='/addcomment/'+ u.post_id)
+						.panel.panel-primary
+							.panel-heading
+								p#text #{u.headline}
+							.panel-body
+								p#date #{u.date}
+		.col-md-2
