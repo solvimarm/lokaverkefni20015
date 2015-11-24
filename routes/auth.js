@@ -19,6 +19,7 @@ router.get('/addcomment/:post_id', ensureLoggedinIn, newComment);
 router.post('/addcomment/:post_id', AddCommentHandler);
 router.get('/userprofile/:username', ensureLoggedinIn, userProfile);
 router.get('/members', ensureLoggedinIn, allMembers);
+router.post('/members',searchMember);
 router.get('/myprofile', ensureLoggedinIn, myProfile);
 router.get('/edit', ensureLoggedinIn, editProfile);
 router.post('/edit', postEdit);
@@ -124,12 +125,9 @@ function index(req, res, next) {
   var user = req.session.user;
 
   post.listPosts(function (err, entryList) {
-    users.listUsers(function (err, all) {
-      res.render('restricted', { title: 'Restricted zone',
-        user: user,
-        users: all,
-        entries: entryList
-      });
+    res.render('restricted', { title: 'Restricted zone',
+      user: user,
+      entries: entryList
     });
   });
 }
@@ -229,11 +227,19 @@ function myProfile(req, res, next) {
 
 function allMembers(req, res, next) {
   var user = req.session.user;
+  res.render('members', { title: 'List of members',
+      user: user
+    });
+}
 
-  users.listUsers(function (err, all) {
-    res.render('members', { title: 'List of members',
+function searchMember(req, res, next) {
+  var user = req.session.user;
+  var usname = req.body.search;
+  console.log(user);
+  users.listUsers(usname, function (err, entryList) {
+    res.render('members', { title: 'members',
       user: user,
-      users: all
+      users: entryList
     });
   });
 }
