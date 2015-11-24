@@ -35,11 +35,19 @@ a:link {
 
 }
 
-.user-wrapper .description {
-    padding: 25px;
-    background-color: #fff;
-}
+
 .user-wrapper img {
-    height: 300px;
-    width: 300px;
+    width: 100%;
+}
+
+.col-md-2{
+	background-image: url("/sidebanner2.jpg");
+	height: 960px;
+	width: 134px;
+	position: relative;
+	background-repeat: no-repeat;
+}
+
+p{
+	word-wrap:break-word;
 }
