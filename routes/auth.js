@@ -240,9 +240,13 @@ function allMembers(req, res, next) {
 
 function editProfile (req, res, next){
   var user = req.session.user;
+  var usname = req.session.user.username;
   console.log(user);
+  users.findprofile(usname, function (err, entryList) {
     res.render('edit', { title: 'edit your profile',
-    user: user
+      user: user,
+      entries: entryList
+    });
   });
 }
 
@@ -252,7 +256,9 @@ function postEdit (req, res, next){
   var image = req.body.image_url;
   var phone = req.body.phonenumber;
   var email = req.body.email;
-  users.updateprofile(user.username, about, image, phone, email, function (err, status) {
+  var rank = req.body.selectrank;
+  console.log(rank);
+  users.updateprofile(user.username, about, image, phone, email, rank,function (err, status) {
     if (err) {
       console.error(err);
     }
