@@ -1,39 +1,40 @@
 extends layout
 
 block content
-	.col-md-2
-	.col-md-8
-		if entries
-			p
-			each u in entries
-				.panel.panel-primary
-					.panel-heading
-						.panel-title
-							p #{u.headline}
-					.panel-body
-						p #{u.text}
-						if u.url
-							a.btn.btn-default(role="button",href=u.url)
-								span.glyphicon.glyphicon-link(aria-hidden ="true")
-						if u.embed			
-							iframe(type='text/html' width='640' height='390' frameborder='0' src=u.embed )
-					.panel-footer
-						p #{u.username} #{u.date}
-						iframe(src="//instalike.click/button/?thing=THING&align=left" frameborder="0" scrolling="0" width="140px" height="20px" color='white')
-		h2 Comments		
+	.row
+		.col-md-2
+		.col-md-8
+			if entries
+				p
+				each u in entries
+					.panel.panel-primary
+						.panel-heading
+							.panel-title
+								p #{u.headline}
+						.panel-body
+							p #{u.text}
+							if u.url
+								a.btn.btn-default(role="button",href=u.url)
+									span.glyphicon.glyphicon-link(aria-hidden ="true")
+							if u.embed			
+								iframe(type='text/html' width='640' height='390' frameborder='0' src=u.embed )
+						.panel-footer
+							p #{u.username} #{u.date}
 
-		if comm
-			p
-			each u in comm
-				.panel.panel-default
-					.panel-heading
-						.panel-title
-							p #{u.username}
-							p #{u.date}					
-						.panel-body		
-							p #{u.comment}
-		form(method="post")
-			textarea(name="comment" class="form-control" rows="5" placeholder="Write your comment here")
-			br
-			button(type="submit" class="btn btn-primary") Comment
-	.col-md-2
+			h2 Comments		
+
+			if comm
+				p
+				each u in comm
+					.panel.panel-default
+						.panel-heading
+							.panel-title
+								p #{u.username}
+								p #{u.date}					
+							.panel-body		
+								p #{u.comment}
+			form(method="post")
+				textarea(name="comment" class="form-control" rows="5" placeholder="Write your comment here")
+				br
+				button(type="submit" class="btn btn-primary") Comment
+		.col-md-2

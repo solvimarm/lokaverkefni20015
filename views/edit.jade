@@ -1,97 +1,98 @@
 extends layout
 
 block content
-	.col-md-2
-	.col-md-8
-		if entries
-			p
-			each u in entries
-				form(method="post")
-					input.form-control(type="text",name="email",placeholder="email" value=u.email)
-					br
-					textarea(name="about" class="form-control" rows="10" placeholder="about me")
-						| #{u.about}
-					br
-					input.form-control(type="text",name="phonenumber",placeholder="phonenumber" value=u.phonenumber)
-					br
-					input.form-control(type="text",name="contry",placeholder="country" value=u.country)
-					br
-					input.form-control(type="text",name="image_url",placeholder="image url" value=u.image)
-					br
-					select.form-control(name="selectrank")
-						option(value="") Pick your CS Global Offensive rank
-						if (u.rank == "/silver1.png")
-							option(selected value="/silver1.png") Silver I
-						else	
-							option(value="/silver1.png") Silver I
-						if (u.rank == "/silver2.png")
-							option(selected value="/silver2.png") Silver II
-						else
-							option(value="/silver2.png") Silver II
-						if (u.rank == "/silver3.png")
-							option(selected value="/silver3.png") Silver III
-						else
-							option(value="/silver3.png") Silver III
-						if (u.rank == "/silver4.png")
-							option(selected value="/silver4.png") Silver IV
-						else
-							option(value="/silver4.png") Silver IV
-						if (u.rank == "/silverelite.png")
-							option(selected value="/silverelite.png") Silver Elite
-						else
-							option(value="/silverelite.png") Silver Elite
-						if (u.rank == "/sem.png")
-							option(selected value="/sem.png") Silver Elite Master
-						else
-							option(value="/sem.png") Silver Elite Master
-						if (u.rank == "/gn1.png")
-							option(selected value="/gn1.png") Gold Nova I
-						else
-							option(value="/gn1.png") Gold Nova I
-						if (u.rank == "/gn2.png")
-							option(selected value="/gn2.png") Gold Nova II
-						else
-							option(value="/gn2.png") Gold Nova II
-						if (u.rank == "/gn3.png")
-							option(selected value="/gn3.png") Gold Nova III
-						else
-							option(value="/gn3.png") Gold Nova III
-						if (u.rank == "/gnmaster.png")
-							option(selected value="/gnmaster.png") Gold Nova Master
-						else
-							option(value="/gnmaster.png") Gold Nova Master
-						if (u.rank == "/mg1.png")
-							option(selected value="/mg1.png") Master Guardian I
-						else	
-							option(value="/mg1.png") Master Guardian I
-						if (u.rank == "/mg2.png")
-							option(selected value="/mg2.png") Master Guardian II
-						else
-							option(value="/mg2.png") Master Guardian II
-						if (u.rank == "/mge.png")
-							option(selected value="/mge.png") Master Guardian Elite
-						else
-							option(value="/mge.png") Master Guardian Elite
-						if (u.rank == "/dmg.png")
-							option(selected value="/dmg.png") Distinguished Master Guardian
-						else
-							option(value="/dmg.png") Distinguished Master Guardian
-						if (u.rank == "/le.png")
-							option(selected value="/le.png") Legerndary Eagle
-						else
-							option(value="/le.png") Legerndary Eagle
-						if (u.rank == "/lem.png")
-							option(selected value="/lem.png") Legendary Eagle Master
-						else
-							option(value="/lem.png") Legendary Eagle Master
-						if (u.rank == "/supreme.png")
-							option(selected value="/supreme.png") Supreme Master First Class
-						else
-							option(value="/supreme.png") Supreme Master First Class
-						if (u.rank == "/global.png")
-							option(selected value="/global.png") Global Elite
-						else
-							option(value="/global.png") Global Elite
-					br
-					button(type="submit" class="btn btn-primary") edit
-	.col-md-2
+	.row
+		.col-md-2
+		.col-md-8
+			if entries
+				p
+				each u in entries
+					form(method="post")
+						input.form-control(type="text",name="email",placeholder="email" value=u.email)
+						br
+						textarea(name="about" class="form-control" rows="10" placeholder="about me")
+							| #{u.about}
+						br
+						input.form-control(type="text",name="phonenumber",placeholder="phonenumber" value=u.phonenumber)
+						br
+						input.form-control(type="text",name="contry",placeholder="country" value=u.country)
+						br
+						input.form-control(type="text",name="image_url",placeholder="image url" value=u.image)
+						br
+						select.form-control(name="selectrank")
+							option(value="") Pick your CS Global Offensive rank
+							if (u.rank == "/silver1.png")
+								option(selected value="/silver1.png") Silver I
+							else	
+								option(value="/silver1.png") Silver I
+							if (u.rank == "/silver2.png")
+								option(selected value="/silver2.png") Silver II
+							else
+								option(value="/silver2.png") Silver II
+							if (u.rank == "/silver3.png")
+								option(selected value="/silver3.png") Silver III
+							else
+								option(value="/silver3.png") Silver III
+							if (u.rank == "/silver4.png")
+								option(selected value="/silver4.png") Silver IV
+							else
+								option(value="/silver4.png") Silver IV
+							if (u.rank == "/silverelite.png")
+								option(selected value="/silverelite.png") Silver Elite
+							else
+								option(value="/silverelite.png") Silver Elite
+							if (u.rank == "/sem.png")
+								option(selected value="/sem.png") Silver Elite Master
+							else
+								option(value="/sem.png") Silver Elite Master
+							if (u.rank == "/gn1.png")
+								option(selected value="/gn1.png") Gold Nova I
+							else
+								option(value="/gn1.png") Gold Nova I
+							if (u.rank == "/gn2.png")
+								option(selected value="/gn2.png") Gold Nova II
+							else
+								option(value="/gn2.png") Gold Nova II
+							if (u.rank == "/gn3.png")
+								option(selected value="/gn3.png") Gold Nova III
+							else
+								option(value="/gn3.png") Gold Nova III
+							if (u.rank == "/gnmaster.png")
+								option(selected value="/gnmaster.png") Gold Nova Master
+							else
+								option(value="/gnmaster.png") Gold Nova Master
+							if (u.rank == "/mg1.png")
+								option(selected value="/mg1.png") Master Guardian I
+							else	
+								option(value="/mg1.png") Master Guardian I
+							if (u.rank == "/mg2.png")
+								option(selected value="/mg2.png") Master Guardian II
+							else
+								option(value="/mg2.png") Master Guardian II
+							if (u.rank == "/mge.png")
+								option(selected value="/mge.png") Master Guardian Elite
+							else
+								option(value="/mge.png") Master Guardian Elite
+							if (u.rank == "/dmg.png")
+								option(selected value="/dmg.png") Distinguished Master Guardian
+							else
+								option(value="/dmg.png") Distinguished Master Guardian
+							if (u.rank == "/le.png")
+								option(selected value="/le.png") Legerndary Eagle
+							else
+								option(value="/le.png") Legerndary Eagle
+							if (u.rank == "/lem.png")
+								option(selected value="/lem.png") Legendary Eagle Master
+							else
+								option(value="/lem.png") Legendary Eagle Master
+							if (u.rank == "/supreme.png")
+								option(selected value="/supreme.png") Supreme Master First Class
+							else
+								option(value="/supreme.png") Supreme Master First Class
+							if (u.rank == "/global.png")
+								option(selected value="/global.png") Global Elite
+							else
+								option(value="/global.png") Global Elite
+						br
+						button(type="submit" class="btn btn-primary") edit
+		.col-md-2
