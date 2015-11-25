@@ -5,6 +5,7 @@ html
 		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/slate/bootstrap.min.css" rel="stylesheet" integrity="sha256-JcgoO7qVianjbv43Z5KinReHzk9/rEZg5m6z/ZZy3DI= sha512-rYMbEYJa5+7VkGdfAypdYHqwIdCNEBKh8lhKUNIv58tgHQuHHzXC/Bzf66BFDkTjq970Lc6OIEpgllKINGDCKQ==" crossorigin="anonymous">
 
 		link(rel='stylesheet', href='/stylesheets/style.css')
+
 	body
 		.jumbotron(id="banner")
 			.container
@@ -28,7 +29,11 @@ html
 							li: a(href='/newpost') Add post
 					ul.nav.navbar-nav.navbar-right
 						if (user)
+							li: a(href='https://steamcommunity.com/app/730')
+									img(src="/apps_steam.png" id="steam")
 							li: a(href='/logout') Log Out
+							
+
 							
 	block content
 
