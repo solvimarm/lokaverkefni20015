@@ -5,7 +5,10 @@ block content
 	.col-md-8
 		h2 Users on this site
 		h3 You are: #{user.username}
-
+		if find
+			each u in find
+				a.list-group-item(href="/userprofile/"+u.username) #{u.username}
+		br
 		form(method="post")
 			input.form-control(type="text",name="search",placeholder="Search for a user")
 			br

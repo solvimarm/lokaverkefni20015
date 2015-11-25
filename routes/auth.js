@@ -238,19 +238,25 @@ function myProfile(req, res, next) {
 
 function allMembers(req, res, next) {
   var user = req.session.user;
-  res.render('members', { title: 'List of members',
-      user: user
+  users.listUsers(function (err, result) {
+    res.render('members', { title: 'members',
+      user: user,
+      users:result
     });
+  });
 }
 
 function searchMember(req, res, next) {
   var user = req.session.user;
   var usname = req.body.search;
   console.log(user);
-  users.listUsers(usname, function (err, entryList) {
-    res.render('members', { title: 'members',
-      user: user,
-      users: entryList
+  users.listUsers(function (err, result) {
+    users.searchUsers(usname, function (err, entryList) {
+      res.render('members', { title: 'members',
+        user: user,
+        users: result,
+        find: entryList
+      });
     });
   });
 }
